@@ -1,1 +1,1 @@
-worker: node MusicBot.js
+worker: npm install && node MusicBot.js

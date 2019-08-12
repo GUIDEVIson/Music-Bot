@@ -31,12 +31,12 @@ client.on('message', async msg => { // eslint-disable-line
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(PREFIX.length)
 
-	if (command === 'play') {
+	if (command === 'เปิดเพลง') {
 		const voiceChannel = msg.member.voiceChannel;
-		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!voiceChannel) return msg.channel.send('I\'ขออภัยคุณต้องอยู่ในช่องเสียงเพื่อเล่นเพลง!');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
-			return msg.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
+			return msg.channel.send('ฉันไม่สามารถเข้าไปในห้องที่คุณอยู่ได้ตรวจสอบให้แน่ใจว่าฉันมีสิทธิ์ที่เข้าห้องนั้น');
 		}
 		if (!permissions.has('SPEAK')) {
 			return msg.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
@@ -73,27 +73,27 @@ Please provide a value to select one of the search results ranging from 1-10.
 						});
 					} catch (err) {
 						console.error(err);
-						return msg.channel.send('No or invalid value entered, cancelling video selection.');
+						return msg.channel.send('ไม่มีการป้อนคำสั่งหรือไม่ถูกต้อง ทำยกเลิกการเลือกวิดีโอ.');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return msg.channel.send('🆘 I could not obtain any search results.');
+					return msg.channel.send('🆘 ฉันไม่สามารถรับผลการค้นหาใดๆ ได้');
 				}
 			}
 			return handleVideo(video, msg, voiceChannel);
 		}
-	} else if (command === 'skip') {
-		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+	} else if (command === 'ข้ามเพลง') {
+		if (!msg.member.voiceChannel) return msg.channel.send('คุณไม่ได้อยู่ในช่องเสียง!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
-		serverQueue.connection.dispatcher.end('Skip command has been used!');
+		serverQueue.connection.dispatcher.end('คำสั่ง ข้ามเพลง ถูกใช้แล้ว!');
 		return undefined;
-	} else if (command === 'stop') {
-		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+	} else if (command === 'หยุดเล่น') {
+		if (!msg.member.voiceChannel) return msg.channel.send('คุณไม่ได้อยู่ในช่องเสียง!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end('Stop command has been used!');
+		serverQueue.connection.dispatcher.end('คำสั่ง หยุดเล่นเพลง ถูกใช้แล้ว!');
 		return undefined;
 	} else if (command === 'volume') {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');

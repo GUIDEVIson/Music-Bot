@@ -1,3 +1,14 @@
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', msg => {
+  if (msg.content === 'พวกกูมี') {
+    msg.reply('สรุปไม่มีเหี้ยอะไรเลย');
+  }
+});
+
+
 {
   "name": "yumeko",
   "version": "0.1.0",
@@ -32,3 +43,4 @@
     }
   }
 }
+

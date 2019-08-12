@@ -85,10 +85,10 @@ Please provide a value to select one of the search results ranging from 1-10.
 			return handleVideo(video, msg, voiceChannel);
 		}
 	} else if (command === 'ข้ามเพลง') {
-		if (!msg.member.voiceChannel) return msg.channel.send('คุณไม่ได้อยู่ในช่องเสียง!');
-		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
-		serverQueue.connection.dispatcher.end('คำสั่ง ข้ามเพลง ถูกใช้แล้ว!');
-		return undefined;
+		if (!message.member.voiceChannel) return message.channel.send('คุณไม่ได้อยู่ในช่องเสียง!');
+	        if (!serverQueue) return message.channel.send('คำสั่ง ข้ามเพลง ถูกใช้แล้ว!');
+	        serverQueue.connection.dispatcher.end();
+		
 	} else if (command === 'หยุดเล่น') {
 		if (!msg.member.voiceChannel) return msg.channel.send('คุณไม่ได้อยู่ในช่องเสียง!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');

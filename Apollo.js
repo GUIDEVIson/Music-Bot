@@ -1,7 +1,13 @@
-//Set listener on 'message'
-Apollo.on('message', message => {
-  if (message.content === 'กูนี้ยังชอบพวกมึงเลย') {
-    message.reply('เดียวนะ มึงใครอะมากจาไหน');
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', msg => {
+  if (msg.content === 'กูนี้ยังชอบพวกมึงเลย') {
+    msg.reply('มาชอบพวกกู มึงใคร');
   }
 });
 
